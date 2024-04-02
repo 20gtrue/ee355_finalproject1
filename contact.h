@@ -9,7 +9,7 @@ using namespace std;
 
 class Contact {
     // TODO: private or protected? Look at your children!	
-	string type;
+	protected string type; // Private bc children need to access type
 public:
 	virtual void print() = 0;
     virtual string get_contact(string style="full") = 0;
@@ -22,17 +22,23 @@ private:
     string email_addr;
 public:
     Email(string type, string email_addr);
-    // TODO: Complete me!
+    // TODO: Add functions
+    void print();
+    string get_contact(string style="full");
+    void set_contact();
 };
 
 
 class Phone: public Contact{
 private:
-    // TODO: modify dataType! Can int store 10 digit phone-number? 
-	dataType phone_num; 
+    // TODO: modify dataType! Can int store 10 digit phone-number?
+	string dataType phone_num; 
 public:
     Phone(string type, string phone_number);
-    // TODO: Complete me!
+    // TODO: Add functions
+    void print();
+    string get_contact(string style="full");
+    void set_contact();
 };
 
 #endif
