@@ -18,8 +18,7 @@ public:
 
 
 class Email: public Contact{
-private:
-    string email_addr;
+    protected string email_addr;
 public:
     Email(string type, string email_addr);
     // TODO: Add functions
@@ -30,9 +29,8 @@ public:
 
 
 class Phone: public Contact{
-private:
     // TODO: modify dataType! Can int store 10 digit phone-number?
-	string dataType phone_num; 
+	protected string phone_num; 
 public:
     Phone(string type, string phone_number);
     // TODO: Add functions

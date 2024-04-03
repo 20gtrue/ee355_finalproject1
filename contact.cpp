@@ -4,8 +4,8 @@
 
 Email::Email(string type, string email_addr){
     // TODO: Complete constructor
-    this.type = type; 
-    this.email_addr = email_addr; 
+    this -> type = type; 
+    this -> email_addr = email_addr; 
 }
 
 
@@ -48,7 +48,7 @@ Phone::Phone(string type, string num){
 	    }
   	}
   	
-  	this.num = no_dash_num; 
+  	this.phone_num = no_dash_num; 
   	if(no_dash_num.length() != 10) {
   		cout << "Invalid Phone Number." <<endl; 
   	}
@@ -59,12 +59,12 @@ void Phone::set_contact(){
     // TODO: Complete this method
     // Use the same prompts as given!
 	cout <<"Enter the type of phone number: ";
-	cin >> this.type; 
+	cin >> (this -> type); 
 	bool num_not_valid = true; 
+	string num; 
 	
 	while(num_not_valid) {
 		cout << "Enter the phone number: ";
-		string num; 
 		cin >> num; 
 	
 		// Get rid of any non-numbers in num 
@@ -81,14 +81,18 @@ void Phone::set_contact(){
 	  	}
 	  	else {
 	  		num_not_valid = false; 
-	  		this.num = no_dash_num; 
+	  		this -> num = no_dash_num; 
 	  	}
 }
 
 
 string Phone::get_contact(string style){
     // TODO: Complete this method, get hint from Email 
-
+    // Note: We have default argument in declaration and not in definition!
+    if (style=="full")
+	    return "(" + type + ") " + phone_num.substr(0,2) + "-" + phone_num.substr(3,5) + "-" + phone_num.substr(6,9);
+    else 
+        return phone_num;
 }
 
 
@@ -96,4 +100,6 @@ void Phone::print(){
     // Note: get_contact is called with default argument
 	cout << get_contact() << endl;
 }
+
+
 
