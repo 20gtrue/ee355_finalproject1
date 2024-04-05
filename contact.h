@@ -1,5 +1,6 @@
 #ifndef CONTACT_H
 #define CONTACT_H
+#include "person.h"
 
 #include <iostream>
 #include <string>
@@ -7,7 +8,7 @@
 using namespace std;
 
 
-class Contact {
+class Contact : public Person {
     // TODO: private or protected? Look at your children!	
 	protected: string type; // Private bc children need to access type
 public:

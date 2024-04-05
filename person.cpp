@@ -1,5 +1,5 @@
-
 #include "person.h"
+#include "contact.h"
 #include <fstream>
 
 Person::Person(){
@@ -9,23 +9,25 @@ Person::Person(){
 
 
 Person::~Person(){
-    delete birthdate;
-    // TODO: complete the method!
-    delete l_name;
-    delete f_name;
-    delete email;
-    delete phone; // do these need to be deconstructors in contact?
+    // delete birthdate;
+    // // TODO: complete the method!
+    // delete l_name;
+    // delete f_name;
+    // delete email;
+    // delete phone; // do these need to be deconstructors in contact?
 }
 
 
-Person::Person(string f_name, string l_name, string b_date, string email, string phone){
+Person::Person(string f_name, string l_name /*, string b_date */, string email, string phone){
     // TODO: Complete this method!
-    // phone and email strings are in full version
-    this.f_name = f_name; 
-    this.l_name = l_name; 
-    this.b_date = b_date;
-    contact email.set_contact(email);
-    contact phone.set_contact(phone);
+    // phone nd email strings are in full version
+    this -> f_name = f_name; 
+    this -> l_name = l_name; 
+    // this -> b_date = b_date;
+    Contact mail; 
+    Contact mail.set_contact(email);
+    Contact phone;
+    Contact phone.set_contact(phone);
 }
 
 
@@ -51,10 +53,10 @@ void Person::set_person(){
     cout << "Last Name: ";
     std::getline(std::cin,l_name);
 
-    cout << "Birthdate (M/D/YYYY): ";
-    std::getline(std::cin,temp);
-    // pay attention to how we passed argument to the constructor of a new object created dynamically using new command
-    birthdate = new Date(temp); 
+    // cout << "Birthdate (M/D/YYYY): ";
+    // std::getline(std::cin,temp);
+    // // pay attention to how we passed argument to the constructor of a new object created dynamically using new command
+    // birthdate = new Date(temp); 
 
     cout << "Type of email address: ";
     string type_e_temp;
@@ -64,9 +66,7 @@ void Person::set_person(){
     string e_temp;
     std::getline(std::cin,e_temp);
     
-    email = new contact();
-    email -> set_contact(type_e_temp, e_temp);
-    
+    Contact email = Contact(type_e_temp, e_temp);
     
     cout << "Type of phone number: ";
     string type_p_temp;
@@ -76,46 +76,45 @@ void Person::set_person(){
     string type_p_temp;
     std::getline(std::cin, p_temp);
     
-    phone = new contact();
-    phone -> set_contact(type_p_temp, p_temp);
+    Contact phone = Contact(type_p_temp, p_temp);
 }
 
 
-void Person::set_person(string filename){
-    // reads a Person from a file
-    // Look at person_template files as examples.     
-    // Phone number in files can have '-' or not.
-    // TODO: Complete this method!
-    ifstream input(filename); 
+// void Person::set_person(string filename){
+//     // reads a Person from a file
+//     // Look at person_template files as examples.     
+//     // Phone number in files can have '-' or not.
+//     // TODO: Complete this method!
+//     ifstream input(filename); 
     
-    getline(input, f_name);
-    getline(input, l_name);
+//     getline(input, f_name);
+//     getline(input, l_name);
     
-    string date;
-    getline(input, date);
-    birthdate = new Date(date); 
+//     // string date;
+//     // getline(input, date);
+//     // birthdate = new Date(date); 
     
-    string type_p;
-    string p;
-    getline(input, type_p, ' ');
-    getline(input, p, ' ');
-    email -> set_contact(type_p, p);
+//     string type_p;
+//     string p;
+//     getline(input, type_p, ' ');
+//     getline(input, p, ' ');
+//     email -> set_contact(type_p, p);
     
     
-    string type_e;
-    string e;
-    getline(input, type_e, ' ');
-    getline(input, e, ' '); 
+//     string type_e;
+//     string e;
+//     getline(input, type_e, ' ');
+//     getline(input, e, ' '); 
     
-    email -> set_contact(type_e, e);
-}
+//     email -> set_contact(type_e, e);
+// }
 
 
 bool Person::operator==(const Person& rhs){
     // TODO: Complete this method!
     // Note: you should check first name, last name and birthday between two persons
     // refer to bool Date::operator==(const Date& rhs)
-	if((this.f_name == rhs.f_name) && (this.l_name == rhs.l_name) && (this.birthday == rhs.birthday) )
+	if((this->f_name == rhs.f_name) && (this->l_name == rhs.l_name)) // && (this->birthday == rhs.birthday) )
 		return true; 
 	else 
 		return false;
@@ -123,7 +122,7 @@ bool Person::operator==(const Person& rhs){
 
 bool Person::operator!=(const Person& rhs){ 
     // TODO: Complete this method!
-    	if((this.f_name == rhs.f_name) && (this.l_name == rhs.l_name) && (this.birthday == rhs.birthday) )
+    	if((this->f_name == rhs.f_name) && (this->l_name == rhs.l_name)) // && (this->birthday == rhs.birthday) )
 		return false; 
 	else 
 		return true;
@@ -133,7 +132,7 @@ bool Person::operator!=(const Person& rhs){
 void Person::print_person(){
     // Already implemented for you! Do not change!
 	cout << l_name <<", " << f_name << endl;
-	birthdate->print_date("Month D, YYYY");
+	// birthdate->print_date("Month D, YYYY");
     phone->print();
     email->print();
 }
