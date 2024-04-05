@@ -1,4 +1,5 @@
-
+#include <iostream>
+#include <string>
 #include "contact.h"
 // TODO: Add needed libraries! 
 
@@ -8,13 +9,17 @@ Email::Email(string type, string email_addr){
     this -> email_addr = email_addr; 
 }
 
+Email::~Email() {
+    // Destructor is empty since there are no resources to clean up
+}
+
 
 void Email::set_contact(){
     // TODO: Do not change the prompts!
     cout << "Enter the type of email address: ";
-    cin >> this.type;
+    cin >> this -> type;
     cout << "Enter email address: ";
-    cin >> this.email_addr;
+    cin >> this -> email_addr;
 }
 
 
@@ -38,7 +43,7 @@ Phone::Phone(string type, string num){
     // TODO: Complete this method!
     // Note: We don't want to use C++11! stol is not valid!
     
-    	this.type = type; 
+    	this -> type = type; 
     
     // Get rid of any non-numbers in num 
    	string no_dash_num = "";
@@ -48,12 +53,15 @@ Phone::Phone(string type, string num){
 	    }
   	}
   	
-  	this.phone_num = no_dash_num; 
+  	this -> phone_num = no_dash_num; 
   	if(no_dash_num.length() != 10) {
   		cout << "Invalid Phone Number." <<endl; 
   	}
 }
 
+// Phone::~Phone() {
+//     // Destructor is empty since there are no resources to clean up
+// }
 
 void Phone::set_contact(){
     // TODO: Complete this method
@@ -75,14 +83,15 @@ void Phone::set_contact(){
 		    }
 	  	}
 	  	
-	  	this.num = no_dash_num; 
+	  	this -> phone_num = no_dash_num; 
 	  	if(no_dash_num.length() != 10) {
 	  		cout << "Invalid Phone Number." <<endl; 
 	  	}
 	  	else {
 	  		num_not_valid = false; 
-	  		this -> num = no_dash_num; 
+	  		this -> phone_num = no_dash_num; 
 	  	}
+	}
 }
 
 
@@ -90,7 +99,7 @@ string Phone::get_contact(string style){
     // TODO: Complete this method, get hint from Email 
     // Note: We have default argument in declaration and not in definition!
     if (style=="full")
-	    return "(" + type + ") " + phone_num.substr(0,2) + "-" + phone_num.substr(3,5) + "-" + phone_num.substr(6,9);
+	    return "(" + type + ") " + phone_num.substr(0,3) + "-" + phone_num.substr(3,3) + "-" + phone_num.substr(6,4);
     else 
         return phone_num;
 }
