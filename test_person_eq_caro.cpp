@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "person.h"
+#include "person_caro.h" //TODO: change name
 
 int main(){
 
@@ -8,9 +8,10 @@ int main(){
     c1.print_person();
     cout << "----------------\n";
 	
-	/*
+	
     Person c2("person_template.txt");
     c2.print_person();
+    /*
     cout << "----------------\n";
 
     cout << "Is c1 equal to c2: " << (c1==c2) << endl;

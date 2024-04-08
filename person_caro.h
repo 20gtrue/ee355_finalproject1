@@ -21,11 +21,11 @@ private:
 public: 
     Person();
     ~Person();
-    //Person(string filename);
+    Person(string filename);
     Person(string f_name, string l_name, string b_date, string email, string phone);
 	void print_person();
 	void set_person();
-	//void set_person(string filename);
+	void set_person(string filename);
     bool operator==(const Person& rhs);
     bool operator!=(const Person& rhs);
 };

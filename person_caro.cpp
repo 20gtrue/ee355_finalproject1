@@ -31,11 +31,11 @@ Person::Person(string f_name, string l_name, string b_date, string email_raw, st
    
 }
 
-/*
+
 Person::Person(string filename){
     set_person(filename);
 }
-*/
+
 
 void Person::set_person(){
     // prompts for the information of the user from the terminal
@@ -87,34 +87,37 @@ void Person::set_person(){
 }
 
 
-// void Person::set_person(string filename){
-//     // reads a Person from a file
-//     // Look at person_template files as examples.     
-//     // Phone number in files can have '-' or not.
-//     // TODO: Complete this method!
-//     ifstream input(filename); 
+void Person::set_person(string filename){
+     // reads a Person from a file
+     // Look at person_template files as examples.     
+     // Phone number in files can have '-' or not.
+     // TODO: Complete this method!
+     ifstream input(filename); 
     
-//     getline(input, f_name);
-//     getline(input, l_name);
+     getline(input, f_name);
+     getline(input, l_name);
     
-//     // string date;
-//     // getline(input, date);
-//     // birthdate = new Date(date); 
+     string date;
+     getline(input, date);
+     birthdate = new Date(date); 
     
-//     string type_p;
-//     string p;
-//     getline(input, type_p, ' ');
-//     getline(input, p, ' ');
-//     email -> set_contact(type_p, p);
+     string type_p;
+     string p;
+     getline(input, type_p, ' ');
+     getline(input, p, ' ');
+     //email -> set_contact(type_p, p);
     
     
-//     string type_e;
-//     string e;
-//     getline(input, type_e, ' ');
-//     getline(input, e, ' '); 
+     string type_e;
+     string e;
+     getline(input, type_e, ' ');
+     getline(input, e, ' '); 
     
-//     email -> set_contact(type_e, e);
-// }
+     //email -> set_contact(type_e, e);
+     
+     email = new Email(type_e,e); 
+    phone = new Phone(type_p,p);
+ }
 
 
 bool Person::operator==(const Person& rhs){
