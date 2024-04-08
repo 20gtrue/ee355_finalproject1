@@ -3,6 +3,8 @@
 #include "contact.h"
 // TODO: Add needed libraries! 
 
+using namespace std; 
+
 Email::Email(string type, string email_addr){
     // TODO: Complete constructor
     this -> type = type; 
