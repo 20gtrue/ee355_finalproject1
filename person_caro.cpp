@@ -1,5 +1,5 @@
-#include "person.h"
-//#include "contact.h"
+#include "person_caro.h" //TODO: change names
+#include "contact.h"
 #include "date.h"
 #include <fstream>
 
@@ -19,19 +19,16 @@ Person::~Person(){
 }
 
 
-Person::Person(string f_name, string l_name, string b_date, string email, string phone){
+Person::Person(string f_name, string l_name, string b_date, string email_raw, string phone_raw){
     // TODO: Complete this method!
     // phone nd email strings are in full version
     
     this -> f_name = f_name; 
     this -> l_name = l_name; 
     birthdate = new Date(b_date);
-    /*
-    Contact mail; 
-    Contact mail.set_contact(email);
-    Contact phone;
-    Contact phone.set_contact(phone);
-    */
+    email = new Email("unknown",email_raw); //TODO: will this work??? no type
+    phone = new Phone("unknown",phone_raw);
+   
 }
 
 /*
@@ -62,27 +59,31 @@ void Person::set_person(){
      // pay attention to how we passed argument to the constructor of a new object created dynamically using new command
     birthdate = new Date(temp); 
 
-	/*
+	
     cout << "Type of email address: ";
     string type_e_temp;
-    std::getline(std::cin,email->(type_e_temp));
+    std::getline(std::cin,type_e_temp);
     
     cout << "Email address: ";
     string e_temp;
     std::getline(std::cin,e_temp);
     
-    Contact email = Contact(type_e_temp, e_temp);
+  
+    
     
     cout << "Type of phone number: ";
     string type_p_temp;
     std::getline(std::cin,type_p_temp);
     
     cout << "Phone number: ";
-    string type_p_temp;
+    string p_temp;
     std::getline(std::cin, p_temp);
     
-    Contact phone = Contact(type_p_temp, p_temp);
-    */
+    email = new Email(type_e_temp,e_temp); 
+    phone = new Phone(type_p_temp,p_temp);
+    
+   
+    
 }
 
 
@@ -141,6 +142,6 @@ void Person::print_person(){
     // Already implemented for you! Do not change!
 	cout << l_name <<", " << f_name << endl;
 	birthdate->print_date("Month D, YYYY");
-    //phone->print();
-    //email->print();
+    phone->print();
+    email->print();
 }

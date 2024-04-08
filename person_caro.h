@@ -2,7 +2,7 @@
 #define PERSON_H
 
 #include "date.h"
-//#include "contact.h"
+#include "contact.h"
 #include "fstream"
 
 class Person{
@@ -12,8 +12,8 @@ private:
 	string f_name;
 	string l_name;
 	Date *birthdate;
-    //Email *email;
-    //Phone *phone;
+    Email *email;
+    Phone *phone;
     // the following to attributes are used in the linked list.
     Person* next;
     Person* prev;
