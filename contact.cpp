@@ -61,9 +61,9 @@ Phone::Phone(string type, string num){
   	}
 }
 
-// Phone::~Phone() {
-//     // Destructor is empty since there are no resources to clean up
-// }
+Phone::~Phone() {
+     // Destructor is empty since there are no resources to clean up
+}
 
 void Phone::set_contact(){
     // TODO: Complete this method

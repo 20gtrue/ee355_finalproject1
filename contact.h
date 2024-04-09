@@ -39,7 +39,7 @@ public:
     Phone(string type, string phone_number);
     Phone() : phone_num("") {}  // Default constructor
     // TODO: Add functions
-    // virtual ~Phone(); 
+    virtual ~Phone(); 
     void print();
     string get_contact(string style="full");
     void set_contact();

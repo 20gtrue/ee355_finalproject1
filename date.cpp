@@ -45,4 +45,7 @@ void Date::print_date(string idk) {
 
 }
 
+string Date::get_date(){
+    return date_nums; 
+} 
 
