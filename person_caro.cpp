@@ -10,12 +10,9 @@ Person::Person(){
 
 
 Person::~Person(){
-    // delete birthdate;
-    // // TODO: complete the method!
-    // delete l_name;
-    // delete f_name;
-    // delete email;
-    // delete phone; // do these need to be deconstructors in contact?
+    delete birthdate; 
+    delete email; 
+    delete phone; 
 }
 
 
@@ -69,8 +66,6 @@ void Person::set_person(){
     std::getline(std::cin,e_temp);
     
   
-    
-    
     cout << "Type of phone number: ";
     string type_p_temp;
     std::getline(std::cin,type_p_temp);
@@ -92,51 +87,57 @@ void Person::set_person(string filename){
      // Look at person_template files as examples.     
      // Phone number in files can have '-' or not.
      // TODO: Complete this method!
-     ifstream input(filename); 
     
-     getline(input, f_name);
-     getline(input, l_name);
-    
-     string date;
-     getline(input, date);
-     birthdate = new Date(date); 
-    
-     string type_p;
-     string p;
-     getline(input, type_p, ' ');
-     getline(input, p, ' ');
-     //email -> set_contact(type_p, p);
-    
-    
-     string type_e;
-     string e;
-     getline(input, type_e, ' ');
-     getline(input, e, ' '); 
-    
-     //email -> set_contact(type_e, e);
+    string temp;
+    string type;
      
-     email = new Email(type_e,e); 
-    phone = new Phone(type_p,p);
+    fstream input(filename); 
+    
+    getline(input,f_name);
+    getline(input,l_name);
+
+    getline(input,temp);
+    // pay attention to how we passed argument to the constructor of a new object created dynamically using new command
+    birthdate = new Date(temp); 
+
+    string type_p_temp;
+    //getline(input,type_p_temp);
+    input >> type_p_temp; 
+
+    string p_temp;
+    //getline(input, p_temp);
+    input >> p_temp; 
+
+    string type_e_temp;
+    // getline(input,type_e_temp);
+    input >> type_e_temp; 
+
+    string e_temp;
+    // getline(input,e_temp);
+    input >> e_temp; 
+    
+    phone = new Phone(type_p_temp,p_temp);
+    email = new Email(type_e_temp,e_temp); 
  }
 
 
 bool Person::operator==(const Person& rhs){
-	/*
+	
     // TODO: Complete this method!
     // Note: you should check first name, last name and birthday between two persons
     // refer to bool Date::operator==(const Date& rhs)
-	if((this->f_name == rhs.f_name) && (this->l_name == rhs.l_name)) // && (this->birthday == rhs.birthday) )
+	if((this->f_name == rhs.f_name) && (this->l_name == rhs.l_name) && (this->birthdate->get_date() == rhs.birthdate->get_date()))
 		return true; 
-	else */
+	else 
 		return false;
 }
 
 bool Person::operator!=(const Person& rhs){ 
-/*
+
     // TODO: Complete this method!
-    	if((this->f_name == rhs.f_name) && (this->l_name == rhs.l_name)) // && (this->birthday == rhs.birthday) )
+    	if((this->f_name == rhs.f_name) && (this->l_name == rhs.l_name) && (this->birthdate->get_date() == rhs.birthdate->get_date()))
 		return false; 
-	else  */
+	else  
 		return true;
 }
 
