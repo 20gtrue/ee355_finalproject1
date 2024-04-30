@@ -6,7 +6,7 @@
 #include "fstream"
 
 class Person{
-    //friend class Network;
+    friend class Network;
 
 private:
 	string f_name;
