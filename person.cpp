@@ -107,14 +107,6 @@ void Person::set_person(string filename, int line_num){
     // pay attention to how we passed argument to the constructor of a new object created dynamically using new command
     birthdate = new Date(temp); 
 
-    string type_p_temp;
-    //getline(input,type_p_temp);
-    input >> type_p_temp; 
-
-    string p_temp;
-    //getline(input, p_temp);
-    input >> p_temp; 
-
     string type_e_temp;
     // getline(input,type_e_temp);
     input >> type_e_temp; 
@@ -122,6 +114,14 @@ void Person::set_person(string filename, int line_num){
     string e_temp;
     // getline(input,e_temp);
     input >> e_temp; 
+
+    string type_p_temp;
+    //getline(input,type_p_temp);
+    input >> type_p_temp; 
+
+    string p_temp;
+    //getline(input, p_temp);
+    input >> p_temp; 
     
     phone = new Phone(type_p_temp,p_temp);
     email = new Email(type_e_temp,e_temp); 

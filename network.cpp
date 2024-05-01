@@ -353,7 +353,7 @@ void Network::showMenu(){
             }
             first_name.clear(); 
             last_name.clear();
-            delete remove_person_ptr;
+            
         }
         else if (opt==5){
             // TODO: Complete me!

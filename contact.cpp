@@ -54,7 +54,8 @@ Phone::Phone(string type, string num){
 		no_dash_num = no_dash_num + num[i]; 
 	    }
   	}
-  	
+	cout << "num"<< endl;
+  	cout << num;
   	this -> phone_num = no_dash_num; 
   	if(no_dash_num.length() != 10) {
   		cout << "Invalid Phone Number." <<endl; 

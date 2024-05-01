@@ -18,6 +18,8 @@ Date::Date(string date_nums) {
 	this -> date_nums = date_nums;
 }
 
+Date::~Date(){};
+
 //TODO: figure out what the string input is supposed to mean?
 void Date::print_date(string idk) {
 

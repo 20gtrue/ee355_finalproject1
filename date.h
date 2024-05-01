@@ -15,7 +15,9 @@ public:
 	//virtual void print() = 0;
     //virtual string get_contact(string style="full") = 0;
 	//virtual void set_contact() = 0;
+
     Date(string date_nums);
+    virtual ~Date();
     string get_date(); // Implementing this function so we can access date_nums in person to compare two people 
     void print_date(string idk);
 };
