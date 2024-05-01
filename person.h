@@ -31,6 +31,7 @@ public:
     bool operator==(const Person& rhs);
     bool operator!=(const Person& rhs);
     void makeFriend(Person *newFriend);
+    void pprint_friends();
 };
 
 

@@ -167,6 +167,25 @@ void Person::makeFriend(Person* newFriend) {
 	myfriends.push_back(newFriend);
 }
 
+void Person::pprint_friends() {
+	//string code1 = myfriends[0];
+	string code2 = "";
+	//run through list of myfriends once
+	for(auto& itr : myfriends) {
+		code2 = codeName(itr->f_name,itr->l_name);
+		
+		
+		
+		//afterwards
+		//code1 = 
+			
+		//if(codeName(itr->f_name,itr->l_name)[0] < codeName((itr+1)->f_name,(itr+1)->l_name)[0]) {
+		//cout << "true" << endl;
+		
+		//}
+	}
+}
+
 
 
 
