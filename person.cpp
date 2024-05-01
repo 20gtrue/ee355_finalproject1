@@ -1,4 +1,4 @@
-#include "person_caro.h" //TODO: change names
+#include "person.h" //TODO: change names
 #include "contact.h"
 #include "date.h"
 #include <fstream>
@@ -29,8 +29,8 @@ Person::Person(string f_name, string l_name, string b_date, string email_raw, st
 }
 
 
-Person::Person(string filename){
-    set_person(filename);
+Person::Person(string filename, int line_num){
+    set_person(filename, line_num);
 }
 
 
@@ -82,17 +82,24 @@ void Person::set_person(){
 }
 
 
-void Person::set_person(string filename){
+void Person::set_person(string filename, int line_num){
      // reads a Person from a file
      // Look at person_template files as examples.     
      // Phone number in files can have '-' or not.
      // TODO: Complete this method!
-    
     string temp;
     string type;
-     
+
     fstream input(filename); 
     
+    // Shift iterator to desired line number in file
+    for (int cur_line = 1; cur_line < line_num; cur_line++) {
+        if (!getline(input, temp)) {
+            cerr << "Error: Line " << cur_line << endl;
+            return;
+        }
+    }
+
     getline(input,f_name);
     getline(input,l_name);
 
