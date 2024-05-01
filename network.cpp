@@ -33,15 +33,21 @@ Person* Network::search(Person* searchEntry){
     // Searches the Network for searchEntry
     // if found, returns a pointer to it, else returns NULL
     // TODO: Complete this method
-    Person *ptr = head;
-    while (ptr != NULL){
-        if (ptr == searchEntry) return ptr;
-        else {
-            ptr = ptr -> next;
-        }
+    if (head == NULL) {
+        cout << "No entries in DB" << endl;
+        return NULL;
     }
-    
-    return NULL;
+    else {
+        Person *ptr = head;
+        while (ptr != NULL){
+            if (ptr == searchEntry) return ptr;
+            else {
+                ptr = ptr -> next;
+            }
+        }
+        
+        return NULL;
+    }
     
 }
 
@@ -51,11 +57,17 @@ Person* Network::search(string fname, string lname){
     // if found, returns a pointer to it, else returns NULL
     // TODO: Complete this method
     // Note: two ways to implement this, 1st making a new Person with fname and lname and and using search(Person*), 2nd using fname and lname directly. 
-    Person *ptr = head;
-    while (ptr != NULL){
-        if (((ptr-> f_name).compare(fname) == 0) & ((ptr->l_name).compare(lname) == 0)) return ptr;
-        else {
-            ptr = ptr -> next;
+    if (head == NULL) {
+        cout << "No entries in DB" << endl;
+        return NULL;
+    }
+    else{
+        Person *ptr = head;
+        while (ptr != NULL){
+            if (((ptr-> f_name).compare(fname) == 0) & ((ptr->l_name).compare(lname) == 0)) return ptr;
+            else {
+                ptr = ptr -> next;
+            }
         }
     }
     
@@ -137,21 +149,24 @@ void Network::loadDB(string filename){
 
 void Network::saveDB(string filename){
     // TODO: Complete this method
-    Person *ptr = head;
-    std::streambuf *newer, *former;
-    std::ofstream ofile;
-    ofile.open(filename);
+    if (head == NULL) cout << "No DB to save!";
+    else{
+        Person *ptr = head;
+        std::streambuf *newer, *former;
+        std::ofstream ofile;
+        ofile.open(filename);
 
-    former = cout.rdbuf();
-    newer = ofile.rdbuf();
-    cout.rdbuf(newer);
-    
-    for (int i = 0; i < count; i++){
-        ptr->print_person();
-        ptr = ptr->next;
-        //count++;
+        former = cout.rdbuf();
+        newer = ofile.rdbuf();
+        cout.rdbuf(newer);
+        
+        for (int i = 0; i < count; i++){
+            ptr->print_person();
+            ptr = ptr->next;
+            //count++;
+        }
+        cout.rdbuf(former);
     }
-    cout.rdbuf(former);
 
 
     
@@ -164,11 +179,13 @@ void Network::printDB(){
     // This is a feature of OOP, classes are supposed to take care of themselves!
     cout << "Number of people: " << count << endl;
     cout << "------------------------------" << endl;
-    Person* ptr = head;
-    while(ptr != NULL){
-        ptr->print_person();
-        cout << "------------------------------" << endl;
-        ptr = ptr->next;
+    if (head != NULL){
+        Person* ptr = head;
+        while(ptr != NULL){
+            ptr->print_person();
+            cout << "------------------------------" << endl;
+            ptr = ptr->next;
+        }
     }
 }
 
@@ -192,45 +209,53 @@ void Network::push_front(Person* newEntry){
 void Network::push_back(Person* newEntry){
     // Adds a new Person (newEntry) to the back of LL
     // TODO: Complete this method
-    Person * ptr = tail;
-    tail -> next = newEntry;
-    tail = newEntry;
-    newEntry -> prev = ptr;
-    newEntry -> next = NULL;
+    if (head == NULL){
+        push_front(newEntry);
+    }
+    else{
+        Person * ptr = tail;
+        tail -> next = newEntry;
+        tail = newEntry;
+        newEntry -> prev = ptr;
+        newEntry -> next = NULL;
+    }
 
 }
 
 
 bool Network::remove(string fname, string lname){
     // TODO: Complete this method
-    Person * ptr = search(fname, lname);
-    Person * ptr_prev = NULL;
-    Person * ptr_next = NULL;
-    cout << "about to remove" << endl;;
-
-    if (ptr == NULL) return false;
+    if (head == NULL) return false;
     else{
-        if (ptr == head){
-            head = ptr -> next;
-            head -> prev = NULL;
-            delete ptr; 
-        }
-        else if (ptr == tail){
-            cout << "remove at tail..." << endl;
-            tail = ptr -> prev;
-            tail -> next = NULL;
-            delete ptr;
+        Person * ptr = search(fname, lname);
+        Person * ptr_prev = NULL;
+        Person * ptr_next = NULL;
+        cout << "about to remove" << endl;;
 
-        }
+        if (ptr == NULL) return false;
         else{
-            ptr_prev = ptr -> prev;
-            ptr_next = ptr -> next;
-            ptr_prev -> next = ptr -> next;
-            ptr_next -> prev = ptr_prev;
-            delete ptr;
+            if (ptr == head){
+                head = ptr -> next;
+                head -> prev = NULL;
+                delete ptr; 
+            }
+            else if (ptr == tail){
+                cout << "remove at tail..." << endl;
+                tail = ptr -> prev;
+                tail -> next = NULL;
+                delete ptr;
+
+            }
+            else{
+                ptr_prev = ptr -> prev;
+                ptr_next = ptr -> next;
+                ptr_prev -> next = ptr -> next;
+                ptr_next -> prev = ptr_prev;
+                delete ptr;
+            }
+            count--;
+            return true;
         }
-        count--;
-        return true;
     }
  
 }
