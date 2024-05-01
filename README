@@ -10,3 +10,7 @@ The data stored is the person's first and last name, their email, phone number a
 Additionally, in person, two pointers are stored: one pointing to the previous person in the linked list and the other to the next person in the linked list. 
 The email and phone number stored in person are both classes in and of themselves (and are very similar to one another), person is a parent class to them. 
 The birthdate stored in person is also a class, person is a parent class to it.
+
+
+Sources:
+Network::saveDB - https://github.com/20gtrue/ee355_finalproject1/edit
