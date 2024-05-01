@@ -3,19 +3,15 @@
 
 #include <iostream>
 #include <string>
-// TODO: You may need to add other libraries here!
 using namespace std;
 
+//defines class date and all its functions
 class Date {
-    // TODO: private or protected? Look at your children!	
-	//protected string type; // Private bc children need to access type
 private:
     string date_nums;
 public:
-	//virtual void print() = 0;
-    //virtual string get_contact(string style="full") = 0;
-	//virtual void set_contact() = 0;
     Date(string date_nums);
+    virtual ~Date();
     string get_date(); // Implementing this function so we can access date_nums in person to compare two people 
     void print_date(string idk);
 };

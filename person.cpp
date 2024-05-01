@@ -1,26 +1,23 @@
-#include "person.h" //TODO: change names
+#include "person.h" 
 #include "contact.h"
 #include "date.h"
 #include "misc.h"
 #include <fstream>
 
+// Constructor
 Person::Person(){
-    // I'm already done! 
     set_person();
 }
 
-
+// Deconstructor
 Person::~Person(){
     delete birthdate; 
     delete email; 
     delete phone; 
 }
 
-
+// Make new person by sending in all data with function call 
 Person::Person(string f_name, string l_name, string b_date, string email_raw, string phone_raw){
-    // TODO: Complete this method!
-    // phone nd email strings are in full version
-    
     this -> f_name = f_name; 
     this -> l_name = l_name; 
     birthdate = new Date(b_date);
@@ -29,24 +26,17 @@ Person::Person(string f_name, string l_name, string b_date, string email_raw, st
    
 }
 
-
+// Make new person by sending in a file of data + calling set_person()
 Person::Person(string filename, int line_num){
     set_person(filename, line_num);
 }
 
-
+// set_person creates a new person by taking in data inputted by the user
 void Person::set_person(){
-    // prompts for the information of the user from the terminal
-    // first/last name can have spaces!
-    // date format must be "M/D/YYYY"
-    // We are sure user enters info in correct format.
-    // TODO: complete this method!
-    
     string temp;
     string type;
 
     cout << "First Name: ";
-    // pay attention to how we read first name, as it can have spaces!
     std::getline(std::cin,f_name);
     
     cout << "Last Name: ";
@@ -54,7 +44,6 @@ void Person::set_person(){
 
     cout << "Birthdate (M/D/YYYY): ";
     std::getline(std::cin,temp);
-     // pay attention to how we passed argument to the constructor of a new object created dynamically using new command
     birthdate = new Date(temp); 
 
 	
@@ -77,17 +66,10 @@ void Person::set_person(){
     
     email = new Email(type_e_temp,e_temp); 
     phone = new Phone(type_p_temp,p_temp);
-    
-   
-    
 }
 
-
+// Makes a new person by reading in person data from a file; called by Person()
 void Person::set_person(string filename, int line_num){
-     // reads a Person from a file
-     // Look at person_template files as examples.     
-     // Phone number in files can have '-' or not.
-     // TODO: Complete this method!
     string temp;
     string type;
 
@@ -108,14 +90,6 @@ void Person::set_person(string filename, int line_num){
     // pay attention to how we passed argument to the constructor of a new object created dynamically using new command
     birthdate = new Date(temp); 
 
-    string type_p_temp;
-    //getline(input,type_p_temp);
-    input >> type_p_temp; 
-
-    string p_temp;
-    //getline(input, p_temp);
-    input >> p_temp; 
-
     string type_e_temp;
     // getline(input,type_e_temp);
     input >> type_e_temp; 
@@ -123,23 +97,28 @@ void Person::set_person(string filename, int line_num){
     string e_temp;
     // getline(input,e_temp);
     input >> e_temp; 
+
+    string type_p_temp;
+    //getline(input,type_p_temp);
+    input >> type_p_temp; 
+
+    string p_temp;
+    //getline(input, p_temp);
+    input >> p_temp; 
     
     phone = new Phone(type_p_temp,p_temp);
     email = new Email(type_e_temp,e_temp); 
  }
 
-
+// Compare two people for equality: same first name, last name and birthday
 bool Person::operator==(const Person& rhs){
-	
-    // TODO: Complete this method!
-    // Note: you should check first name, last name and birthday between two persons
-    // refer to bool Date::operator==(const Date& rhs)
 	if((this->f_name == rhs.f_name) && (this->l_name == rhs.l_name) && (this->birthdate->get_date() == rhs.birthdate->get_date()))
 		return true; 
 	else 
 		return false;
 }
 
+// Compare two people for inequality: different first name, last name or birthday
 bool Person::operator!=(const Person& rhs){ 
 
     // TODO: Complete this method!
@@ -149,9 +128,8 @@ bool Person::operator!=(const Person& rhs){
 		return true;
 }
 
-
+// print a person 
 void Person::print_person(){
-    // Already implemented for you! Do not change!
 	cout << l_name <<", " << f_name << endl;
 	birthdate->print_date("Month D, YYYY");
     phone->print();

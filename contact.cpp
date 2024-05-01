@@ -1,21 +1,21 @@
 #include <iostream>
 #include <string>
 #include "contact.h"
-// TODO: Add needed libraries! 
 
 using namespace std; 
 
+// Email Constructor
 Email::Email(string type, string email_addr){
-    // TODO: Complete constructor
     this -> type = type; 
     this -> email_addr = email_addr; 
 }
 
+// Email Deconstructor
 Email::~Email() {
     // Destructor is empty since there are no resources to clean up
 }
 
-
+// set an email
 void Email::set_contact(){
     // TODO: Do not change the prompts!
     cout << "Enter the type of email address: ";
@@ -24,7 +24,7 @@ void Email::set_contact(){
     cin >> this -> email_addr;
 }
 
-
+// get an email
 string Email::get_contact(string style){
     // Note: We have default argument in declaration and not in definition!
     if (style=="full")
@@ -33,18 +33,14 @@ string Email::get_contact(string style){
         return email_addr;
 }
 
-
+// print an email
 void Email::print(){
     // Note: get_contact is called with default argument
 	cout << get_contact() << endl;
 }
 
-
+// phone constructor
 Phone::Phone(string type, string num){
-    // TODO: It is possible that num includes "-" or not, manage it!
-    // TODO: Complete this method!
-    // Note: We don't want to use C++11! stol is not valid!
-    
     	this -> type = type; 
     
     // Get rid of any non-numbers in num 
@@ -54,17 +50,20 @@ Phone::Phone(string type, string num){
 		no_dash_num = no_dash_num + num[i]; 
 	    }
   	}
-  	
+	cout << "num"<< endl;
+  	cout << num;
   	this -> phone_num = no_dash_num; 
   	if(no_dash_num.length() != 10) {
   		cout << "Invalid Phone Number." <<endl; 
   	}
 }
 
+// phone deconstructor
 Phone::~Phone() {
      // Destructor is empty since there are no resources to clean up
 }
 
+// set a phone number
 void Phone::set_contact(){
     // TODO: Complete this method
     // Use the same prompts as given!
@@ -96,7 +95,7 @@ void Phone::set_contact(){
 	}
 }
 
-
+// get phone number
 string Phone::get_contact(string style){
     // TODO: Complete this method, get hint from Email 
     // Note: We have default argument in declaration and not in definition!
@@ -106,7 +105,7 @@ string Phone::get_contact(string style){
         return phone_num;
 }
 
-
+// print phone number
 void Phone::print(){
     // Note: get_contact is called with default argument
 	cout << get_contact() << endl;
