@@ -46,7 +46,6 @@ void Person::set_person(){
     std::getline(std::cin,temp);
     birthdate = new Date(temp); 
 
-	
     cout << "Type of email address: ";
     string type_e_temp;
     std::getline(std::cin,type_e_temp);
@@ -55,7 +54,6 @@ void Person::set_person(){
     string e_temp;
     std::getline(std::cin,e_temp);
     
-  
     cout << "Type of phone number: ";
     string type_p_temp;
     std::getline(std::cin,type_p_temp);
@@ -134,15 +132,12 @@ void Person::print_person(){
 	birthdate->print_date("Month D, YYYY");
     phone->print();
     email->print();
-    //part2 implementation:
-    /*
+
+    // Part 2.3 Addition; printing friends:
     for (auto& itr : myfriends) {
     	cout << codeName(itr->f_name,itr->l_name) << " " << "(" << itr->f_name << " " << itr->l_name << ")" << endl;
-    }*/
-    
-    for(int i=0;i<myfriends.size();i++) {
-    	cout << codeName(myfriends[i]->f_name,myfriends[i]->l_name) << " " << "(" << myfriends[i]->f_name << " " << myfriends[i]->l_name << ")" << endl;
     }
+    
 }
 
 //add friend to myfriends vector

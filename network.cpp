@@ -80,9 +80,7 @@ Person* Network::search(string fname, string lname){
 
 
 void Network::loadDB(string filename){
-    // TODO: Complete this method
     // erase all of the elements of the current LL
-    cout << "start loadDB";
     Person * ptr = NULL;
     if (head != NULL){
         ptr = head;
@@ -95,11 +93,10 @@ void Network::loadDB(string filename){
         count = 0;
     }
     
-    //START NEW LL
+    // START NEW Linked List
     Person *next_temp;
     Person *prev_temp;
 
-    //
     int line_num = 1; //keeps track of where in the input file the next person to be added is
     ptr = new Person(filename, line_num); // added first person
     count++;
@@ -269,6 +266,7 @@ void Network::showMenu(){
     //option 3: uses pushfront to add a new entry
     //option 4: uses remove to remove an entry
     //option 5: uses search to print people with the same last name
+    //option 6: allows people to make friends with other people
     
     int opt;
     while(1){
@@ -281,6 +279,7 @@ void Network::showMenu(){
         cout << "3. Add a new person \n";
         cout << "4. Remove a person \n";
         cout << "5. Print people with last name  \n";
+        cout << "6. Connect \n";
         cout << "\nSelect an option ... ";
         
         if (cin >> opt) {
@@ -345,9 +344,9 @@ void Network::showMenu(){
             cout << "Adding a new person \n";
             string first_name, last_name;
             cout << "First name: ";
-            cin >> first_name;
+            getline(cin, first_name);
             cout << "Last name: ";
-            cin >> last_name;
+            getline(cin, last_name);
             getline(cin, dummy);
             
             Person * new_person_ptr = search(first_name, last_name);
@@ -367,9 +366,9 @@ void Network::showMenu(){
             cout << "Removing a person \n";
             string first_name, last_name;
             cout << "First name: ";
-            cin >> first_name;
+            getline(cin, first_name);
             cout << "Last name: ";
-            cin >> last_name;
+            getline(cin, last_name);
             Person * remove_person_ptr = search(first_name, last_name);
             if (remove_person_ptr == NULL) cout << "Person not found! \n";
             else {
@@ -386,10 +385,11 @@ void Network::showMenu(){
             string last_name;
             cout << "Print people with last name \n";
             cout << "Last name: ";
-            cin >> last_name;
+            getline(cin, last_name);
             Person *ptr = head;
             bool person_found = 0;
-            for (int i = 0 ; i < count; i++){
+            //for (int i = 0 ; i < count; i++){
+            while(ptr != NULL) {
                 if (((ptr -> l_name).compare(last_name)) == 0){
                     person_found = 1;
                     cout << ptr-> f_name << " " << ptr-> l_name;
@@ -398,10 +398,49 @@ void Network::showMenu(){
             }
             if (!person_found) cout << "Person not found! \n";
         }
-        
-        else
+        else if (opt==6) { // connect
+            cout <<"Make Friends: " <<endl;
+            // Get Person 1 Info
+            cout <<"Person 1: " <<endl;
+            string first_name_1, last_name_1, first_name_2, last_name_2;
+            cout << "First name: ";
+            getline(cin, first_name_1);
+            cout << "Last name: ";
+            getline(cin, last_name_1);
+            cout <<endl; 
+
+            Person * person_1 = search(first_name_1, last_name_1);
+            if (person_1 == NULL) {
+                cout << "Person not found! \n"; 
+            }
+            else{
+                // Get Person 2 Info
+                cout <<"Person 2: " <<endl;
+                cout << "First name: ";
+                getline(cin, first_name_2);
+                cout << "Last name: ";
+                getline(cin, last_name_2);
+                cout <<endl <<endl;
+
+                Person * person_2 = search(first_name_2, last_name_2);
+                if (person_2 == NULL){ 
+                    cout << "Person 2 not found! \n";
+                }
+                else { // Both inputs are valid
+                    person_1->makeFriend(person_2);
+                    person_2->makeFriend(person_1);
+
+                    person_1->print_person();
+                    cout <<endl;
+                    person_2->print_person();
+                }
+            }
+        }
+        else {
+            cin.clear();
             cout << "Nothing matched!\n";
-        
+        }
+
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "\n\nPress Enter key to go back to main menu ... ";
