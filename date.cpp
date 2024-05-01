@@ -48,6 +48,10 @@ void Date::print_date(string idk) {
 
 }
 
+Date::~Date() {
+    // Destructor is empty since there are no resources to clean up
+}
+
 string Date::get_date(){
     return date_nums; 
 } 
