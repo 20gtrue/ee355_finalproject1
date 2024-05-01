@@ -1,12 +1,13 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include "date.h"
-// TODO: Add needed libraries! 
+#include "date.h" 
 
-
+//constructor takes in date in X/X/XXXX or XX/X/XXXX or XX/XX/XXXX format and converts it to XX/XX/XXXX format
+//this assumes that it's given in month/day/year format, which is the date_nums string input
 Date::Date(string date_nums) {
-
+	//checks where the '/' characters are and uses that to determine if the month and day are single digit or double digit.
+	//if they are single digit, it adds a leading zero to the string (so 4 becomes 04 ex.)
 	if(date_nums[1] == '/') {
 		date_nums.insert(0, "0"); //put zero before date if only one digit
 	}
@@ -18,12 +19,11 @@ Date::Date(string date_nums) {
 	this -> date_nums = date_nums;
 }
 
-Date::~Date(){};
-
-//TODO: figure out what the string input is supposed to mean?
+//prints the date in a pretty format
+//this function takes in a string based on the starter code we were given, but we do not use that string in the function.
 void Date::print_date(string idk) {
 
-	//convoluated way of avoiding using C++11, using maps instead
+	//Using a map to create a glossary with each month number as the key, that corresponds to the written-out month
 	map<string, string> month_glossary;
 	month_glossary["01"] = "January";
 	month_glossary["02"] = "February";
@@ -37,7 +37,8 @@ void Date::print_date(string idk) {
 	month_glossary["10"] = "October";
 	month_glossary["11"] = "November";
 	month_glossary["12"] = "December";
-	
+
+	//the following converts the raw string date_nums to each individual part
 	string day = date_nums.substr(3,2);
 	string year = date_nums.substr(6,4);
 	string month = date_nums.substr(0,2);
