@@ -1,6 +1,7 @@
 #include "person.h" //TODO: change names
 #include "contact.h"
 #include "date.h"
+#include "misc.h"
 #include <fstream>
 
 Person::Person(){
@@ -155,4 +156,19 @@ void Person::print_person(){
 	birthdate->print_date("Month D, YYYY");
     phone->print();
     email->print();
+    //part2 implementation:
+    for (auto& itr : myfriends) {
+    	cout << codeName(itr->f_name,itr->l_name) << " " << "(" << itr->f_name << " " << itr->l_name << ")" << endl;
+    }
 }
+
+//add friend to myfriends vector
+void Person::makeFriend(Person* newFriend) {
+	myfriends.push_back(newFriend);
+}
+
+
+
+
+
+
