@@ -135,8 +135,13 @@ void Person::print_person(){
     phone->print();
     email->print();
     //part2 implementation:
+    /*
     for (auto& itr : myfriends) {
     	cout << codeName(itr->f_name,itr->l_name) << " " << "(" << itr->f_name << " " << itr->l_name << ")" << endl;
+    }*/
+    
+    for(int i=0;i<myfriends.size();i++) {
+    	cout << codeName(myfriends[i]->f_name,myfriends[i]->l_name) << " " << "(" << myfriends[i]->f_name << " " << myfriends[i]->l_name << ")" << endl;
     }
 }
 
@@ -145,23 +150,58 @@ void Person::makeFriend(Person* newFriend) {
 	myfriends.push_back(newFriend);
 }
 
+//pretty prints friends in sorted order by sorting myfriends list of person
 void Person::pprint_friends() {
-	//string code1 = myfriends[0];
+	string code1 = "";
 	string code2 = "";
+	Person temp("temp", "temp", "01/22/2023", "temp","111-111-1111");
+	int sorted = 0; //flag saying it's not sorted
+
+
+	while(sorted == 0) {
 	//run through list of myfriends once
-	for(auto& itr : myfriends) {
-		code2 = codeName(itr->f_name,itr->l_name);
+	sorted = 1;
+	code1 = codeName(myfriends[0]->f_name,myfriends[0]->l_name);
+	
+	for(int i=1;i<myfriends.size();i++) {
+		code2 = codeName(myfriends[i]->f_name,myfriends[i]->l_name);
 		
-		
-		
-		//afterwards
-		//code1 = 
+		if(code1[0] > code2[0]) {
+			//need to swap
+			temp = *myfriends[i-1];
+			*myfriends[i-1] = *myfriends[i];
+			*myfriends[i] = temp;
 			
-		//if(codeName(itr->f_name,itr->l_name)[0] < codeName((itr+1)->f_name,(itr+1)->l_name)[0]) {
-		//cout << "true" << endl;
+			//cout << "swapped " << code1 << " with " << code2 << endl;
+			sorted = 0;
+		}
+		else if(code1[0] == code2[0]) { 
+			//check second letter of code
+			if(code1[1] > code2[1]) {
+				//need to swap
+				temp = *myfriends[i-1];
+				*myfriends[i-1] = *myfriends[i];
+				*myfriends[i] = temp;
+				
+				//cout << "swapped " << code1 << " with " << code2 << endl;
+				sorted = 0;	
+			}
+			//otherwise just leave them as is
+			
+		}
 		
-		//}
-	}
+		//afterwards update code1
+		code1 = code2;
+	}}
+	
+	//now everything has been sorted in myfriends, so we can just print friends in order they're in
+	
+	cout << f_name << ", " << l_name << endl;
+	cout << "--------------------------------" << endl;
+	for (auto& itr : myfriends) {
+    		cout << itr->f_name << ", " << itr->l_name << endl;
+    	}
+	
 }
 
 
