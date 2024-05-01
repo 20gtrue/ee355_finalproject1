@@ -11,12 +11,12 @@ class Person{
 private:
 	string f_name;
 	string l_name;
-	Date *birthdate;
-    Email *email;
-    Phone *phone;
-    // the following to attributes are used in the linked list.
-    Person* next;
-    Person* prev;
+	Date *birthdate; // Class Date()
+    	Email *email; // Class Email()
+    	Phone *phone; // Class phone()
+   	// the following to attributes are used in the linked list.
+   	Person* next;
+    	Person* prev;
 
 public: 
     Person();
