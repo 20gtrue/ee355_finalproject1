@@ -8,8 +8,8 @@ We have a class, Network, which contains a Double Linked List of People.
 We have a class, Person, which stores data about a person. 
 The data stored is the person's first and last name, their email, phone number and birthdate. 
 Additionally, in person, two pointers are stored: one pointing to the previous person in the linked list and the other to the next person in the linked list. 
-The email and phone number classes are both children of a parent class, Contact.
-The birthdate stored in person is also a class, but has no parent.
+The email and phone number classes are both children of a parent class, Contact and aggregates of Person.
+The birthdate stored in person is also a class and is an aggregate of Person.
 
 
 Sources:
