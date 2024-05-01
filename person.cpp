@@ -1,6 +1,7 @@
 #include "person.h" 
 #include "contact.h"
 #include "date.h"
+#include "misc.h"
 #include <fstream>
 
 // Constructor
@@ -131,6 +132,40 @@ bool Person::operator!=(const Person& rhs){
 void Person::print_person(){
 	cout << l_name <<", " << f_name << endl;
 	birthdate->print_date("Month D, YYYY");
-    	phone->print();
-    	email->print();
+    phone->print();
+    email->print();
+    //part2 implementation:
+    for (auto& itr : myfriends) {
+    	cout << codeName(itr->f_name,itr->l_name) << " " << "(" << itr->f_name << " " << itr->l_name << ")" << endl;
+    }
 }
+
+//add friend to myfriends vector
+void Person::makeFriend(Person* newFriend) {
+	myfriends.push_back(newFriend);
+}
+
+void Person::pprint_friends() {
+	//string code1 = myfriends[0];
+	string code2 = "";
+	//run through list of myfriends once
+	for(auto& itr : myfriends) {
+		code2 = codeName(itr->f_name,itr->l_name);
+		
+		
+		
+		//afterwards
+		//code1 = 
+			
+		//if(codeName(itr->f_name,itr->l_name)[0] < codeName((itr+1)->f_name,(itr+1)->l_name)[0]) {
+		//cout << "true" << endl;
+		
+		//}
+	}
+}
+
+
+
+
+
+
