@@ -357,7 +357,7 @@ void Network::showMenu(){
             else cout << "Person not added because they already exist";
             first_name.clear(); 
             last_name.clear();
-            delete new_person_ptr;
+            // delete new_person_ptr;
 
         }
         else if (opt == 4){
@@ -376,8 +376,7 @@ void Network::showMenu(){
                 cout << "Remove Successful! \n";
             }
             first_name.clear(); 
-            last_name.clear();
-            
+            last_name.clear();    
         }
         else if (opt==5){
             // print the people with the given last name
