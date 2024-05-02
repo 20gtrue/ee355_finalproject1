@@ -358,7 +358,6 @@ void Network::showMenu(){
             else cout << "Person not added because they already exist";
             first_name.clear(); 
             last_name.clear();
-            delete new_person_ptr;
 
         }
         else if (opt == 4){
